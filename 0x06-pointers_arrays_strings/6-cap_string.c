@@ -4,12 +4,6 @@
  * separator - check for special character
  * @c: contain string
  * Return: 0 or 1
- *#include "main.h"
-
- /**
- * separator - check for special character
- * @c: contain string
- * Return: 0 or 1
  */
 
 int separator(char c)
