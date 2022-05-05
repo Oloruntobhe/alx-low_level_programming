@@ -2,38 +2,45 @@
 #include <stdlib.h>
 
 /**
- * _strdup - Copies a string to new allocated space in memory
+ * str_concat - Concatenate two strings
  *
- * @str: The string to be copied
+ * @s1: A string to be concatenated
  *
- * Return: Pointer to allocated memory containing copy of @str (SUCCESS)
- * OR NULL if @str is empty (FAILURE) OR
- * NUL if insufficient memory was available
+ * @s2: A string to be concatenated
+ *
+ * Return: Pointer to newly allocated memory
+ * which is equal to @s1 + @s2 (SUCCESS) OR
+ * NULL (FAILURE)
  */
 
-char *_strdup(char *str)
+char *str_concat(char *s1, char *s2)
 {
+unsigned int s1_length = 0;
+unsigned int s2_length = 0;
 char *alloc_mem;
-unsigned int i;
-unsigned int length_of_string = 0;
+unsigned int i, j;
 
-if (str == NULL)
-return ('\0');
+if (s1 == NULL)
+s1 = "";
 
-while (*(str + length_of_string) != '\0')
-length_of_string++;
+if (s2 == NULL)
+s2 = "";
 
-length_of_string++;
+while (*(s1 + s1_length) != '\0')
+s1_length++;
 
-alloc_mem = malloc(sizeof(*str) * length_of_string);
+while (*(s2 + s2_length) != '\0')
+s2_length++;
 
+alloc_mem = malloc(1 + (s1_length *sizeof(*s1)) + (s2_length *sizeof(*s2)));
 if (alloc_mem == NULL)
 return ('\0');
 
-for (i = 0; i < length_of_string; i++)
-alloc_mem[i] = *(str + i);
+for (i = 0; i < s1_length; i++)
+alloc_mem[i] = *(s1 + i);
 
-alloc_mem[i] = '\0';
+for (j = 0; j < s2_length; j++, i++)
+alloc_mem[i] = *(s2 + j);
 
 return (alloc_mem);
 }
